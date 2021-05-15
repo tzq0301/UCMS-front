@@ -15,8 +15,9 @@
 <script lang="ts">
 import {reactive} from 'vue';
 import axios from 'axios';
-import router from '../../router'
+import router from '../../router';
 import Result from "../../ts/result";
+import {url} from '../../ts/strings';
 
 class Form {
   account: string;
@@ -49,10 +50,10 @@ export default {
       }
 
       axios.post(
-          'http://localhost:8080/cums/login',
+          url + '/login',
           form
       ).then((response) => {
-        const result: Result = response.data;
+        const result: Result = response.data; // todo: 根据 wx 的数据返回结构修改
         // 登陆失败，重新登录
         if (result.code === 0) {
           alert(result.message);
