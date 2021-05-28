@@ -10,13 +10,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import router from "../../router";
 
 export default {
   name: "UnAuth",
   setup() {
-    const returnToLogin = () => {
+    const returnToLogin: () => void = () => {
       router.push({path: '/login'});
     }
 

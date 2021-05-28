@@ -1,7 +1,7 @@
 <template>
   <el-form label-width="80px" id="box-in">
     <el-form-item label="账号">
-      <el-input v-model="form.account"></el-input>
+      <el-input v-model="form.id"></el-input>
     </el-form-item>
     <el-form-item label="密码">
       <el-input v-model="form.password" @key.enter="onLogin"></el-input>
@@ -20,11 +20,11 @@ import Result from "../../ts/result";
 import {url} from '../../ts/strings';
 
 class Form {
-  account: string;
+  id: string;
   password: string;
 
   constructor(account: string, password: string) {
-    this.account = account;
+    this.id = account;
     this.password = password;
   }
 }
@@ -35,16 +35,16 @@ export default {
     const form = reactive(new Form('', ''));
 
     const onLogin = () => {
-      if ('' === form.account) {
+      if ('' === form.id) {
         alert('账号不能为空！');
-        form.account = '';
+        form.id = '';
         form.password = '';
         return;
       }
 
       if ('' === form.password) {
         alert('密码不能为空！');
-        form.account = '';
+        form.id = '';
         form.password = '';
         return;
       }
@@ -53,30 +53,26 @@ export default {
           url + '/login',
           form
       ).then((response) => {
-        const result: Result = response.data; // todo: 根据 wx 的数据返回结构修改
+        const result: Result = response.data;
         // 登陆失败，重新登录
         if (result.code === 0) {
           alert(result.message);
-          form.account = '';
+          form.id = '';
           form.password = '';
           return;
         }
         // 登录成功
-        switch (result.data) {
-          case 0:
-            localStorage.setItem('role', 'student');
-            router.push({path: '/student'});
-            break;
-          case 1:
-            localStorage.setItem('role', 'teacher');
-            router.push({path: '/teacher'});
-            break;
-          case 2:
-            localStorage.setItem('role', 'manager');
-            router.push({path: '/manager'});
-            break;
-          default:
-            break;
+        localStorage.setItem('ID', form.id);
+        const type: number = result.data.type;
+        if (type == 0) {
+          localStorage.setItem('role', 'student');
+          router.push({path: '/student'});
+        } else if (type == 1) {
+          localStorage.setItem('role', 'teacher');
+          router.push({path: '/teacher'});
+        } else if (type == 2) {
+          localStorage.setItem('role', 'manager');
+          router.push({path: '/manager'});
         }
       });
     };
@@ -92,6 +88,6 @@ export default {
 <style scoped>
 #box-in {
   width: 30%;
-  margin: 0 auto;
+  margin: 15% auto;
 }
 </style>
