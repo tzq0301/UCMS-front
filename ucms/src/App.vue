@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Login from './components/view/Login.vue'
 
 export default defineComponent({
   name: 'App'

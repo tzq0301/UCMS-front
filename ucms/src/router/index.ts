@@ -18,24 +18,76 @@ const routes: RouteRecordRaw[] = [
         component: () => import('../components/view/Manager.vue'),
         children: [
             {
+                path: 'teacher-apply',
+                component: () => import('../components/manager/temp/TeacherApply.vue')
+            },
+            {
                 path: 'all-courses',
-                component: () => import('../components/manager/AllCourses.vue')
+                component: () => import('../components/manager/courseHandle/AllCourses.vue')
+            },
+            {
+                path: 'save-new-course',
+                component: () => import('../components/manager/courseHandle/SaveNewCourse.vue')
+            },
+            {
+                path: 'remove-course',
+                component: () => import('../components/manager/courseHandle/RemoveCourse.vue')
             },
             {
                 path: 'all-students',
-                component: () => import('../components/manager/AllStudents.vue')
+                component: () => import('../components/manager/studentHandle/AllStudents.vue')
+            },
+            {
+                path: 'save-new-student',
+                component: () => import('../components/manager/studentHandle/SaveNewStudent.vue')
+            },
+            {
+                path: 'remove-student',
+                component: () => import('../components/manager/studentHandle/RemoveStudent.vue')
+            },
+            {
+                path: 'let-student-join-course',
+                component: () => import('../components/manager/studentHandle/LetStudentJoinCourse.vue')
+            },
+            {
+                path: 'let-student-leave-course',
+                component: () => import('../components/manager/studentHandle/LetStudentLeaveCourse.vue')
             },
             {
                 path: 'all-teachers',
-                component: () => import('../components/manager/AllTeachers.vue')
+                component: () => import('../components/manager/teacherHandle/AllTeachers.vue')
+            },
+            {
+                path: 'save-new-teacher',
+                component: () => import('../components/manager/teacherHandle/SaveNewTeacher.vue')
+            },
+            {
+                path: 'remove-teacher',
+                component: () => import('../components/manager/teacherHandle/RemoveTeacher.vue')
+            },
+            {
+                path: 'add-section-to-teacher',
+                component: () => import('../components/manager/teacherHandle/AddSectionToTeacher.vue')
+            },
+            {
+                path: 'remove-section-of-teacher',
+                component: () => import('../components/manager/teacherHandle/RemoveSectionOfTeacher.vue')
             },
             {
                 path: 'all-sections',
-                component: () => import('../components/manager/AllSections.vue')
+                component: () => import('../components/manager/sectionHandle/AllSections.vue')
             },
             {
-                path: 'teacher-apply',
-                component: () => import('../components/manager/TeacherApply.vue')
+                path: 'save-new-section',
+                component: () => import('../components/manager/sectionHandle/SaveNewSection.vue')
+            },
+            {
+                path: 'remove-section',
+                component: () => import('../components/manager/sectionHandle/RemoveSection.vue')
+            },
+            {
+                path: 'apply',
+                component: () => import('../components/manager/applyHandle/Apply.vue')
             },
         ]
     },
